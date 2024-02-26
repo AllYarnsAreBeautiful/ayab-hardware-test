@@ -4,6 +4,7 @@ Currently the only supported platform is the new AYAB-ESP32.
 
 Start an interactive debug session (add -d to debug serial/slip-encode stream)
 
+```
 $ python3 -i ayab_cli.py
 
 INFO:HW CLI:Connected to /dev/ttyACM0 ...
@@ -11,4 +12,4 @@ INFO:HW CLI:Connected to /dev/ttyACM0 ...
 >>> ayab.digitalWrite(board.LED_R, 0)
 >>> import tests
 >>> tests.tesEOL(ayab)
-
+```
