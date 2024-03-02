@@ -42,7 +42,7 @@ void onPacketReceived(const uint8_t* buffer, size_t size)
     case CMD_I2C_READ:
       Wire.beginTransmission(buffer[1]);
       Wire.write(buffer[2]);
-      Wire.endTransmission();
+      Wire.endTransmission(false);
       Wire.requestFrom(buffer[1],(uint8_t) 1);
       if (Wire.available()) {
         txBuffer[0] = CMD_DIGITAL_READ;

@@ -1,10 +1,10 @@
-import board
+import ayab.board as board
 
-def testEOL(ayab):
+def testEOL(api):
   print("Testing the end of line sensors.\n")
-  rightNorth = ayab.digitalRead(board.EOL_R_N);
-  rightSouth = ayab.digitalRead(board.EOL_R_S);
-  leftNorth  = ayab.digitalRead(board.EOL_L_N);
-  leftSouth  = ayab.digitalRead(board.EOL_L_S);
+  rightNorth = api.digitalRead(board.EOL_R_N)
+  rightSouth = api.digitalRead(board.EOL_R_S)
+  leftNorth  = api.digitalRead(board.EOL_L_N)
+  leftSouth  = api.digitalRead(board.EOL_L_S)
 
-  print(f"EOL L North: {leftNorth}, " South: {leftSouth}, EOL R North: {rightNorth}, South: {rightSouth}\n")
+  print(f"EOL L North: {leftNorth}, South: {leftSouth}, EOL R North: {rightNorth}, South: {rightSouth}\n")
