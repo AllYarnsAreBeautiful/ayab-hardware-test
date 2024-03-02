@@ -9,7 +9,9 @@ $ python3 -i ayab_cli.py
 
 INFO:HW CLI:Connected to /dev/ttyACM0 ...
 
->>> ayab.digitalWrite(board.LED_R, 0)
+>>> api.digitalRead(board.ENC_A)
+>>> led_r.on()
+>>> solenoids.setPorts(0xa5a5)
 >>> import tests
->>> tests.tesEOL(ayab)
+>>> tests.tesEOL(api)
 ```
