@@ -2,9 +2,11 @@ import argparse
 import logging
 import sys
 
-import board
-from ayab_api import API
-from ayab_communication import AyabCommunication
+import ayab.board as board
+from ayab.api import API
+from ayab.comm import AyabCommunication
+from ayab.solenoids import Solenoids
+from ayab.led import Led
 
 # Default parameters
 SERIAL_PORT = '/dev/ttyACM0'
@@ -38,7 +40,33 @@ except:
   logger.info('ERROR: Unable to open serial interface\n')
   sys.exit(1)
 
-ayab = API(comm)
+api = API(comm)
+
+led_r = Led(api, board.LED_R)
+led_g = Led(api, board.LED_G)
+led_b = Led(api, board.LED_B)
+solenoids = Solenoids(api, board.MCP23017_I2CADDR)
+
+# Examples:
+#
+# api.digitalRead(board.ENC_A) 
+# api.digitalWrite(board.LED_R) 
+#
+# api.i2cWrite(board.MCP23017_I2CADDR,0x14,0xa5) # OLATA(0x14)=0xa5
+# api.i2cRead(board.MCP23017_I2CADDR,0x12)       # Read GPIOA
+#
+# led_r.on()
+# led_r.off()
+#
+# solenoids.setAllOff()
+# solenoids.setPorts(0xa55a)
+# solenoids.setPort(0, 1)
+# solenoids.getPort(0)
+# solenoids.setAllOn()
+#
+# import tests
+# tests.testEOL(api)
+
 # -------------------------------------------------------------------------
 # Main loop
 # -------------------------------------------------------------------------
