@@ -14,8 +14,8 @@ SERIAL_PORT = '/dev/ttyACM0'
 # -------------------------------------------------------------------------
 
 parser = argparse.ArgumentParser(description="Ayab HW CLI.")
-parser.add_argument("-s", type=str, help=f"Serial interface ({SERIAL_PORT})", default=SERIAL_PORT)
-parser.add_argument("-d",           help="ENable debug loglevel", action="store_true")
+parser.add_argument("-p", "--port", type=str, help=f"Serial port (default: {SERIAL_PORT})", default=SERIAL_PORT)
+parser.add_argument("-d", "--debug", help="Enable debug log level", action="store_true")
 
 args = parser.parse_args()
 
@@ -24,7 +24,7 @@ args = parser.parse_args()
 # -------------------------------------------------------------------------
 
 # Setup logger
-loglevel = logging.DEBUG if args.d else logging.INFO
+loglevel = logging.DEBUG if args.debug else logging.INFO
 logging.basicConfig(stream=sys.stdout, level=loglevel)
 
 logger = logging.getLogger("HW CLI")
@@ -32,13 +32,14 @@ logger = logging.getLogger("HW CLI")
 # Open serial interface (triggers an Arduino reset)
 comm=AyabCommunication(loglevel=loglevel)
 try:
-  comm.open_serial(args.s)
-  logger.info(f"Connected to {args.s} ...\n")
+  comm.open_serial(args.p)
+  logger.info(f"Connected to {args.p} ...\n")
 except:
   logger.info('ERROR: Unable to open serial interface\n')
   sys.exit(1)
 
 ayab = API(comm)
+
 # -------------------------------------------------------------------------
 # Main loop
 # -------------------------------------------------------------------------

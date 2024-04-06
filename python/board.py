@@ -1,9 +1,18 @@
+# AYAB I/O
+ENCODER_A   = 5
+ENCODER_B   = 6
+ENCODER_BELTPHASE = 7
+
+EOL_L_N     = 1
+EOL_L_S     = 2
+
+EOL_R_N     = 3
+EOL_R_S     = 4
+
 # Misc I/O
 LED_R       = 33  
 LED_G       = 34   
 LED_B       = 35    
-
-PIEZO       = 38
 
 # User I/O
 USER_BUTTON = 36

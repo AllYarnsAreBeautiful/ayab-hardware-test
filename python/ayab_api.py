@@ -1,10 +1,11 @@
 import struct
 
 # API Command definition
-CMD_DIGITAL_WRITE = 0x01
-CMD_DIGITAL_READ  = 0x02
-CMD_I2C_WRITE     = 0x03
-CMD_I2C_READ      = 0x04
+CMD_DIGITAL_WRITE   = 0x01
+CMD_DIGITAL_READ    = 0x02
+CMD_I2C_WRITE       = 0x03
+CMD_I2C_READ        = 0x04
+CMD_SET_STATE       = 0x05
 
 # -------------------------------------------------------------------------
 # API Methods
@@ -32,3 +33,5 @@ class API:
         msg = self._ayab.get_msg()
         return msg[1]
 
+    def beep(self, duration):
+        self._ayab.send_msg(CMD_BEEP, bytes(duration))
